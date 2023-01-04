@@ -9,9 +9,10 @@ const Main = {
   cacheSelectors: function () {
     // uso do $ para indicar as variáveis que armazenam algum elemento HTML 
 
-    this.$checkButtons = document.querySelectorAll('.check')
-    this.$inputTask = document.querySelector('#inputTask')
-    this.$list = document.querySelector('#list')
+    this.$checkButtons = document.querySelectorAll('.check');
+    this.$inputTask = document.querySelector('#inputTask');
+    this.$list = document.querySelector('#list');
+    this.$removeButtons = document.querySelectorAll('.remove');
   },
 
   bindEvents: function () {
@@ -21,7 +22,11 @@ const Main = {
       button.onclick = self.Events.checkButton_click
     });
 
-    this.$inputTask.onkeypress = self.Events.inputTask_keypress.bind(this)
+    this.$inputTask.onkeypress = self.Events.inputTask_keypress.bind(this);
+
+    this.$removeButtons.forEach(function(button) {
+      button.onclick = self.Events.removeButtons_click
+    });
   },
 
   Events: {
@@ -59,7 +64,16 @@ const Main = {
         this.cacheSelectors();
         this.bindEvents();
       }
-  }
+  },
+
+    removeButtons_click: function (e) {
+      let li = e.target.parentElement
+      li.classList.add('removed')
+
+      setTimeout(function () {
+        li.classList.add('hidden')
+      }, 300)
+    }
 }
 
 

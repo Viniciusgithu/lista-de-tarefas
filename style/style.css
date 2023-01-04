@@ -43,6 +43,14 @@ body {
   transition: background-color 300ms ease;
 }
 
+.wrapper-list ul.list li.removed {
+  animation: itensRemoved 300ms ease;
+}
+
+.wrapper-list ul.list li.hidden {
+  display: none;
+}
+
 .wrapper-list ul.list li:hover button.remove {
   opacity: 1;
 }
@@ -125,4 +133,13 @@ body {
 
 .todoList footer input::placeholder{
   color: #F4F7F8;
+}
+
+@keyframes itensRemoved {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
 }
